@@ -22,19 +22,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
-        // Credenciais corretas, iniciar a sessão
+        
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['username'] = $username;
 
-        // Redirecionar para a página de administração
+
         header("Location: admin.php");
         exit;
     } else {
-        // Credenciais incorretas, exibir mensagem de erro
+      
         $error_message = "Usuário ou senha incorretos.";
     }
 
-    // Fechar conexão com o banco de dados
+   
     $conn->close();
 }
 ?>

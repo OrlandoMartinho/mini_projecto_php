@@ -49,18 +49,18 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                 </thead>
                 <tbody>
                     <?php
-                    // Incluir o arquivo de conexão
+                    
                     include("conexao.php");
 
-                    // Inicializar variáveis de pesquisa
+                   
                     $search = "";
                     $sql = "SELECT * FROM solicitacoes";
 
-                    // Verificar se foi submetido um formulário de pesquisa
+                
                     if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
-                        // Limpar e validar o parâmetro de pesquisa
+                        
                         $search = mysqli_real_escape_string($conn, $_GET['search']);
-                        // Construir a consulta SQL com base no parâmetro de pesquisa
+                   
                         $sql = "SELECT * FROM solicitacoes 
                                 WHERE id LIKE '%$search%' 
                                    OR nome LIKE '%$search%' 
@@ -90,24 +90,23 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                         echo "<tr><td colspan='7'>Nenhuma solicitação encontrada.</td></tr>";
                     }
 
-                    // Processar a eliminação se o formulário de eliminação foi enviado
+            
                     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
-                        // Limpar e validar o parâmetro de ID
+                      
                         $id = mysqli_real_escape_string($conn, $_POST['id']);
 
-                        // Construir a consulta SQL para eliminar a solicitação
+                    
                         $delete_sql = "DELETE FROM solicitacoes WHERE id = '$id'";
 
                         if ($conn->query($delete_sql) === TRUE) {
                             echo "<script>alert('Solicitação eliminada com sucesso!');</script>";
-                            // Atualizar a página após a eliminação (evita reenvio do formulário)
+                       
                             echo "<script>window.location = 'admin.php';</script>";
                         } else {
                             echo "<script>alert('Erro ao eliminar a solicitação: " . $conn->error . "');</script>";
                         }
                     }
 
-                    // Fechar conexão com o banco de dados
                     $conn->close();
                     ?>
                 </tbody>
