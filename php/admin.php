@@ -21,7 +21,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 <body>
     <div class="container">
         <div class="sidebar">
-            <h2>Menu</h2>
+            <h2>Administração</h2>
             <a href="#">Ver Solicitações</a>
             <a href="#">Sair</a>
         </div>
